@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+	<title>FlexSlider </title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+	
+  <!-- Demo CSS -->
+	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+	
+
+  
+</head>
+<body class="loading">
+
+  
+  <div id="container" class="cf">
+
+
+	<div id="main" role="main">
+      <section class="slider">
+        <div id="slider" class="flexslider">
+          <ul class="slides">
+            <li>
+  	    	    <div class="image">
+              <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
+              <h2><span>Sweet Treat!</span></h2>
+            </div>
+  	    		</li>
+  	    		<li>
+              <div class="image">
+  	    	    <img src="images/kitchen_adventurer_lemon.jpg" />
+               <h2><span>Cupcakes</span></h2>
+              </div>
+
+  	    		</li>
+  	    		<li>
+              <div class="image">
+  	    	    <img src="images/kitchen_adventurer_donut.jpg" />
+              <h2><span>Doughnuts</span></h2>
+              </div>
+  	    		</li>
+  	    		<li>
+              <div class="image">
+  	    	    <img src="images/kitchen_adventurer_caramel.jpg" />
+              <h2><span>Caramel Adventure</span></h2>
+              </div>
+  	    		</li>
+            <li>
+              <div class="image">
+  	    	    <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
+              <h2><span>Cheesecake Brownie</span></h2>
+              </div>
+  	    		</li>
+  	   
+          </ul>
+        </div>
+        <div id="carousel" class="flexslider">
+          <ul class="slides">
+            <li>
+  	    	    <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="images/kitchen_adventurer_lemon.jpg" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="images/kitchen_adventurer_donut.jpg" />
+  	    		</li>
+  	    		<li>
+  	    	    <img src="images/kitchen_adventurer_caramel.jpg" />
+  	    		</li>
+            <li>
+  	    	    <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
+  	    		</li>
+  	    
+          </ul>
+        </div>
+      </section>
+      <aside>
+        
+        
+      
+      </aside>
+    </div>
+  
+  </div>
+  
+  <!-- jQuery -->
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js">\x3C/script>')</script>
+  
+  <!-- FlexSlider -->
+  <script defer src="../jquery.flexslider.js"></script>
+  
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        asNavFor: '#slider'
+      });
+      
+      $('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        sync: "#carousel",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
+
+  
+  <!-- Optional FlexSlider Additions -->
+  <script src="js/jquery.easing.js"></script>
+  <script src="js/jquery.mousewheel.js"></script>
+  <script defer src="js/demo.js"></script>
+  
+</body>
+</html>

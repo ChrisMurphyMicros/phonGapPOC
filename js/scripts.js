@@ -27,20 +27,29 @@ function vibrate(duration) {
 		e.preventDefault();
 		
 		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
 		document.getElementById("home").classList.add("active");
+		this.classList.toggle("active");
 	}
 
 	document.getElementById("mapButton").onclick = function(e) {
 		e.preventDefault();
 		
 		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
 		document.getElementById("map").classList.add("active");
+		this.classList.toggle("active");
 	}
 
 
 
 
-	var onSuccess = function(position) {
+
+
+
+
+// }
+};	var onSuccess = function(position) {
 	    alert('Latitude: '          + position.coords.latitude          + '\n' +
 	          'Longitude: '         + position.coords.longitude         + '\n' +
 	          'Altitude: '          + position.coords.altitude          + '\n' +
@@ -49,7 +58,6 @@ function vibrate(duration) {
 	          'Heading: '           + position.coords.heading           + '\n' +
 	          'Speed: '             + position.coords.speed             + '\n' +
 	          'Timestamp: '         + new Date(position.timestamp)      + '\n');
-	    google.maps.event.addDomListener(window, 'load', initialize);
 	};
 
 	// onError Callback receives a PositionError object
@@ -60,18 +68,13 @@ function vibrate(duration) {
 	}
 
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-
-
-
-// }
-};
         function initialize() {
             var mapOptions = {
                 center: new google.maps.LatLng(-34.397, 150.644),
-                zoom: 8,
+                zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapOptions);
         }
+		google.maps.event.addDomListener(window, 'load', initialize);

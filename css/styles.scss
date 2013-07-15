@@ -13,9 +13,9 @@ body {
 
 // z-index tree
 body {
-	z-index: 0
-	header {
-		z-index: 2;
+	z-index: 0;
+	#header {
+		z-index: 20;
 	}
 	main {
 		z-index: 1;
@@ -28,8 +28,9 @@ header#header {
 	left: 0;
 	width: 100%;
 	display: block;
-	height: 5vh;
-	background-color: #fff;
+	height: 10vh;
+	background-color: #000;
+	opacity:.8;
 } 
 nav {
 
@@ -46,6 +47,7 @@ nav {
 				padding: 2em 1em;
 				text-align: center;
 				display: block; 
+				color: #e2e2e2;
 			}
 		}
 	}
@@ -53,15 +55,15 @@ nav {
 
 main {
 	padding:1em;
-	margin-top:80px;
+	margin-top:10vh;
 	position: relative;
 	display: block;
 	width:100%;
-	height:100%;
+	height:90vh;
 
 	.tabs {
 		z-index: 1;
-		height: 100%;
+		height: 90vh;
 		width:100%;
 		position: absolute;
 		top: 0;

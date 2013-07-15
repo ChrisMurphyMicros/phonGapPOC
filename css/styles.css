@@ -18,11 +18,11 @@ header nav {
       font-size: 16px;
       display: inline-block;
       padding: 1em;
-      width: 50%;
+      width: 45%;
       text-align: center; }
 
 main {
-  padding-top: 5vh;
+  padding-top: 15vh;
   z-index: 0; }
   main .tabs {
     z-index: 1; }

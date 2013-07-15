@@ -1,4 +1,17 @@
 window.onload  = function() {
+}
+
+
+
+
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function vibrate(duration) {
+    navigator.notification.vibrate(duration);
+}
+
+function onDeviceReady() {
 
 	document.getElementById("toggle-colour").onclick = function() {
 		vibrate(500);
@@ -18,19 +31,6 @@ window.onload  = function() {
 		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
 		document.getElementById("map").classList.add("active");
 	}
-}
-
-
-
-
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function vibrate(duration) {
-    navigator.notification.vibrate(duration);
-}
-
-function onDeviceReady() {
 
 
 

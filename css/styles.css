@@ -23,6 +23,7 @@ header nav {
 
 main {
   padding-top: 15vh;
+  position: relative;
   z-index: 0; }
   main .tabs {
     z-index: 1; }

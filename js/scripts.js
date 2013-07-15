@@ -1,6 +1,6 @@
 window.onload  = function() {
 
-	document.addEventListener("deviceready", onDeviceReady, false);    
+	// document.addEventListener("deviceready", onDeviceReady, false);    
 
     function vibrate(duration) {
         navigator.notification.vibrate(duration);

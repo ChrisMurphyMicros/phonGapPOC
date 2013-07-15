@@ -52,6 +52,8 @@ function vibrate(duration) {
 	          'Heading: '           + position.coords.heading           + '\n' +
 	          'Speed: '             + position.coords.speed             + '\n' +
 	          'Timestamp: '         + new Date(position.timestamp)      + '\n');
+	    console.log(position.coords.latitude);
+	    google.maps.event.addDomListener(window, 'load', initialize);
 	};
 
 	// onError Callback receives a PositionError object
@@ -64,8 +66,6 @@ function vibrate(duration) {
 
 
 
-
-
 // }
 };	
 
@@ -74,10 +74,10 @@ function vibrate(duration) {
         function initialize() {
             var mapOptions = {
                 center: new google.maps.LatLng(-34.397, 150.644),
-                zoom: 10,
+                zoom: 16,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapOptions);
         }
-		google.maps.event.addDomListener(window, 'load', initialize);
+		

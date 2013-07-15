@@ -12,7 +12,7 @@ window.onload  = function() {
 
 
 	document.getElementById("toggle-colour").onclick = function() {
-		vibrate(500);
+		vibrate(500 500 500);
 		document.getElementById("h1").classList.toggle("turnMeRed");
 	}
 }

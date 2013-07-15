@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
 
 <!-- Google Maps -->
-    <style type="text/css">
-        html { height: 100% }
-        body { height: 100%; margin: 0; padding: 0 }
-        #map-canvas { height: 100% }
-    </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5nrR4ul-xNEFi-12PfgLQavZhm5-8M18&sensor=true"></script>
     <script type="text/javascript">
         function initialize() {
@@ -31,7 +26,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <nav>
             <ul>
                 <li><a href="#" id="homeButton">Home</a></li>
@@ -40,19 +35,19 @@
         </nav>
     </header>
 
-
+<!-- 
         <div id="map" class="tabs">
             <div id="map-canvas"></div>
-        </div>
+        </div> -->
     <main>
-        <div id="home" class="tabs">
+        <div id="home" class="tabs active">
             <h1 id="h1">Hello World</h1>
             <button id="toggle-colour">Change Colour</button>
             <h2>Last update:</h2>
             <p>added maps.1</p>
         </div>
 
-        <div id="map" class="tabs active">
+        <div id="map" class="tabs">
             <div id="map-canvas"></div>
         </div>
     </main>

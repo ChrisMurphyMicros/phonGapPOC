@@ -20,8 +20,14 @@ function vibrate(duration) {
 	function removeClassByClassName(elements, classToRemove) {
 		for (var i = elements.length-1;i >=0;i--){
 			elements[i].classList.remove(classToRemove);
-			console.log(elements[i].classList); 
 		}
+	}
+
+	document.getElementById("homeButton").onclick = function(e) {
+		e.preventDefault();
+		
+		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		document.getElementById("home").classList.add("active");
 	}
 
 	document.getElementById("mapButton").onclick = function(e) {

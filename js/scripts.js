@@ -1,4 +1,4 @@
-// window.onload  = function() {
+window.onload  = function() {
 
 	document.addEventListener("deviceready", onDeviceReady, false);    
 
@@ -15,4 +15,4 @@
 
 
 
-// }
+}

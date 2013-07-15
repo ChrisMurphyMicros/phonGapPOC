@@ -31,14 +31,27 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" id="homeButton">Home</a></li>
+                <li><a href="#" id="mapButton">Map</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h1 id="h1">Hello World</h1>
-    <button id="toggle-colour">Change Colour</button>
-    <h2>Last update:</h2>
-    <p>added maps</p>
+    <main>
+        <div id="home" class="tabs">
+            <h1 id="h1">Hello World</h1>
+            <button id="toggle-colour">Change Colour</button>
+            <h2>Last update:</h2>
+            <p>added maps</p>
+        </div>
 
-    <div id="map-canvas"/>
-
+        <div id="map" class="tabs">
+            <div id="map-canvas"/>
+        </div>
+    </main>
 
     
     <script src="phonegap.js"></script>

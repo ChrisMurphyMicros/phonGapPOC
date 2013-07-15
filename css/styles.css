@@ -1,2 +1,33 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif; }
+
+header nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 5vh; }
+  header nav ul {
+    list-style-type: none;
+    font-size: 0; }
+    header nav ul li {
+      font-size: 16px;
+      display: inline-block;
+      padding: 1em;
+      width: 50%;
+      text-align: center; }
+
+main {
+  padding-top: 5vh;
+  z-index: 0; }
+  main .tabs {
+    z-index: 1; }
+    main .tabs.active {
+      z-index: 2; }
+
 h1.turnMeRed {
   color: red; }

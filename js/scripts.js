@@ -1,6 +1,30 @@
-// window.onload  = function() {
+window.onload  = function() {
 
-document.addEventListener("deviceready", onDeviceReady, false);    
+	document.getElementById("toggle-colour").onclick = function() {
+		vibrate(500);
+		document.getElementById("h1").classList.toggle("turnMeRed");
+	}
+
+	function removeClassByClassName(elements, classToRemove) {
+		for (var i = elements.length-1;i >=0;i--){
+			elements[i].classList.remove(classToRemove);
+			console.log(elements[i].classList); 
+		}
+	}
+
+	document.getElementById("mapButton").onclick = function(e) {
+		e.preventDefault();
+		
+		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		document.getElementById("map").classList.add("active");
+	}
+}
+
+
+
+
+
+document.addEventListener("deviceready", onDeviceReady, false);
 
 function vibrate(duration) {
     navigator.notification.vibrate(duration);
@@ -8,15 +32,8 @@ function vibrate(duration) {
 
 function onDeviceReady() {
 
-	document.getElementById("toggle-colour").onclick = function() {
-		vibrate(500);
-		document.getElementById("h1").classList.toggle("turnMeRed");
-	}
-
-	console.log("logged");
 
 
-	
 
 	var onSuccess = function(position) {
 	    alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -41,7 +58,3 @@ function onDeviceReady() {
 
 }
 	
-
-
-
-// }

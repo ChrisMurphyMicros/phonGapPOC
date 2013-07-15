@@ -43,13 +43,7 @@ function vibrate(duration) {
 
 
 
-
-
-
-
-
-// }
-};	var onSuccess = function(position) {
+	var onSuccess = function(position) {
 	    alert('Latitude: '          + position.coords.latitude          + '\n' +
 	          'Longitude: '         + position.coords.longitude         + '\n' +
 	          'Altitude: '          + position.coords.altitude          + '\n' +
@@ -65,9 +59,18 @@ function vibrate(duration) {
 	function onError(error) {
 	    alert('code: '    + error.code    + '\n' +
 	          'message: ' + error.message + '\n');
-	}
-
+	};
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
+
+
+
+// }
+};	
+
+	
+
         function initialize() {
             var mapOptions = {
                 center: new google.maps.LatLng(-34.397, 150.644),

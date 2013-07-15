@@ -41,7 +41,8 @@ function vibrate(duration) {
 		this.classList.toggle("active");
 	}
 
-
+var lat = 0;
+var long = 0;
 
 	var onSuccess = function(position) {
 	    alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -52,8 +53,10 @@ function vibrate(duration) {
 	          'Heading: '           + position.coords.heading           + '\n' +
 	          'Speed: '             + position.coords.speed             + '\n' +
 	          'Timestamp: '         + new Date(position.timestamp)      + '\n');
-	    console.log(position.coords.latitude);
-	    google.maps.event.addDomListener(window, 'load', initialize);
+	    lat = position.coords.latitude;
+	    long = position.coords.longitude;
+	    
+	    loadGoogleMaps()
 	};
 
 	// onError Callback receives a PositionError object
@@ -65,19 +68,20 @@ function vibrate(duration) {
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 
-
-// }
-};	
-
-	
-
-        function initialize() {
+        function loadGoogleMaps() {
             var mapOptions = {
-                center: new google.maps.LatLng(-34.397, 150.644),
+                center: new google.maps.LatLng(lat, long),
                 zoom: 16,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapOptions);
         }
+	    // google.maps.event.addDomListener(initialize);
+
+// }
+};	
+
+	
+
 		

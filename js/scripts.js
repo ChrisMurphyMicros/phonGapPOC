@@ -11,19 +11,18 @@ window.onload  = function() {
 	}
 
 
-	function loadGoogleMaps() {
+	function loadGoogleMaps(geoLat, geoLong) {
 	    var mapOptions = {
-	        // center: new google.maps.LatLng(lat, long),
-	        center: new google.maps.LatLng(0,0),
+	        center: new google.maps.LatLng(geoLat, geoLong),
 	        zoom: 16,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    var map = new google.maps.Map(document.getElementById("map-canvas"),
 	        mapOptions);
-	    // var marker1 = new google.maps.Marker({
-	    //     position: new google.maps.LatLng(lat, long),
-	    //     map: map
-	    // });
+	    var marker1 = new google.maps.Marker({
+	        position: new google.maps.LatLng(geoLat, geoLong),
+	        map: map
+	    });
 	}
 
 // function onDeviceReady() {
@@ -61,21 +60,22 @@ window.onload  = function() {
 // var long = 0;
 
 	var geoSuccess = function(position) {
-	    alert('Latitude: '          + position.coords.latitude          + '\n' +
-	          'Longitude: '         + position.coords.longitude         + '\n' +
-	          'Altitude: '          + position.coords.altitude          + '\n' +
-	          'Accuracy: '          + position.coords.accuracy          + '\n' +
-	          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-	          'Heading: '           + position.coords.heading           + '\n' +
-	          'Speed: '             + position.coords.speed             + '\n' +
-	          'Timestamp: '         + new Date(position.timestamp)      + '\n');
-	    var lat = position.coords.latitude;
-	    var long = position.coords.longitude;
+	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
+	    //       'Longitude: '         + position.coords.longitude         + '\n' +
+	    //       'Altitude: '          + position.coords.altitude          + '\n' +
+	    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
+	    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+	    //       'Heading: '           + position.coords.heading           + '\n' +
+	    //       'Speed: '             + position.coords.speed             + '\n' +
+	    //       'Timestamp: '         + new Date(position.timestamp)      + '\n');
+	    var geoLat = position.coords.latitude;
+	    var geoLong = position.coords.longitude;
+	    var accuracy = position.coords.accuracy;
 
-	    var geoLat = 0;
-	    var geoLong = 0;
+	    // var geoLat = 0;
+	    // var geoLong = 0;
 
-	    loadGoogleMaps()
+	    loadGoogleMaps(geoLat, geoLong, accuracy)
 	    // loadGoogleMaps(geoLat, geoLong);
 	};
 
@@ -87,10 +87,7 @@ window.onload  = function() {
 	          'message: ' + error.message + '\n');
 	};
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-		console.log("it wrok");
-	} else {
-		console.log("it borke");
+		navigator.geolocation.watchPosition(geoSuccess, geoError);
 	}
 
 

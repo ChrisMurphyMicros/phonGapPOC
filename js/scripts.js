@@ -7,13 +7,14 @@ window.onload  = function() {
 // document.addEventListener("deviceready", onDeviceReady, false);
 
 	function vibrate(duration) {
-	    navigator.notification.vibrate(duration);
+		if (navigator.notification) { navigator.notification.vibrate(duration) }
 	}
 
 
 	function loadGoogleMaps() {
 	    var mapOptions = {
-	        center: new google.maps.LatLng(lat, long),
+	        // center: new google.maps.LatLng(lat, long),
+	        center: new google.maps.LatLng(0,0),
 	        zoom: 16,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
@@ -59,29 +60,38 @@ window.onload  = function() {
 // var lat = 0;
 // var long = 0;
 
-	var onSuccess = function(position) {
-	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
-	    //       'Longitude: '         + position.coords.longitude         + '\n' +
-	    //       'Altitude: '          + position.coords.altitude          + '\n' +
-	    //       'Accuracy: '          + position.coords.accuracy          + '\n' +
-	    //       'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-	    //       'Heading: '           + position.coords.heading           + '\n' +
-	    //       'Speed: '             + position.coords.speed             + '\n' +
-	    //       'Timestamp: '         + new Date(position.timestamp)      + '\n');
+	var geoSuccess = function(position) {
+	    alert('Latitude: '          + position.coords.latitude          + '\n' +
+	          'Longitude: '         + position.coords.longitude         + '\n' +
+	          'Altitude: '          + position.coords.altitude          + '\n' +
+	          'Accuracy: '          + position.coords.accuracy          + '\n' +
+	          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+	          'Heading: '           + position.coords.heading           + '\n' +
+	          'Speed: '             + position.coords.speed             + '\n' +
+	          'Timestamp: '         + new Date(position.timestamp)      + '\n');
 	    var lat = position.coords.latitude;
 	    var long = position.coords.longitude;
 
-	    // loadGoogleMaps(lat, long)
+	    var geoLat = 0;
+	    var geoLong = 0;
+
 	    loadGoogleMaps()
+	    // loadGoogleMaps(geoLat, geoLong);
 	};
 
 	// onError Callback receives a PositionError object
 	//
-	function onError(error) {
+	function geoError(error) {
+		console.log("geoError");
 	    alert('code: '    + error.code    + '\n' +
 	          'message: ' + error.message + '\n');
 	};
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+		console.log("it wrok");
+	} else {
+		console.log("it borke");
+	}
 
 
 // }

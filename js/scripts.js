@@ -6,24 +6,24 @@ window.onload  = function() {
 
 // document.addEventListener("deviceready", onDeviceReady, false);
 
-function vibrate(duration) {
-    navigator.notification.vibrate(duration);
-}
+	function vibrate(duration) {
+	    navigator.notification.vibrate(duration);
+	}
 
 
-function loadGoogleMaps() {
-    var mapOptions = {
-        center: new google.maps.LatLng(lat, long),
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
-        mapOptions);
-    var marker1 = new google.maps.Marker({
-	        position: new google.maps.LatLng(lat, long),
-	        map: map
-	    });
-}
+	function loadGoogleMaps() {
+	    var mapOptions = {
+	        center: new google.maps.LatLng(lat, long),
+	        zoom: 16,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    var map = new google.maps.Map(document.getElementById("map-canvas"),
+	        mapOptions);
+	    // var marker1 = new google.maps.Marker({
+	    //     position: new google.maps.LatLng(lat, long),
+	    //     map: map
+	    // });
+	}
 
 // function onDeviceReady() {
 
@@ -71,7 +71,8 @@ function loadGoogleMaps() {
 	    var lat = position.coords.latitude;
 	    var long = position.coords.longitude;
 
-	    loadGoogleMaps(lat, long)
+	    // loadGoogleMaps(lat, long)
+	    loadGoogleMaps()
 	};
 
 	// onError Callback receives a PositionError object
@@ -86,6 +87,6 @@ function loadGoogleMaps() {
 // }
 };	
 
-	
+
 
 		

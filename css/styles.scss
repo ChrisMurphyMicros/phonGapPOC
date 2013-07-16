@@ -85,4 +85,10 @@ h1 {
 
 #map-canvas {
 	height: 100%;
+
+	div {
+		-webkit-box-sizing: content-box;
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
+	}
 }

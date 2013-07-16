@@ -23,10 +23,12 @@ window.onload  = function() {
 	        position: new google.maps.LatLng(geoLat, geoLong),
 	        map: map
 	    });
+	    // if (accuracy >)
+	    alert(accuracy);
 	    var circle = new google.maps.Circle({
 		  map: map,
-		  radius: accuracy,    // 10 miles in metres
-		  fillColor: '#AA0000'
+		  radius: accuracy,
+		  fillColor: "lightblue"
 		});
 		circle.bindTo('center', marker1, 'position');
 	}
@@ -94,7 +96,7 @@ window.onload  = function() {
 	          'message: ' + error.message + '\n');
 	};
 	if (navigator.geolocation) {
-		navigator.geolocation.watchPosition(geoSuccess, geoError);
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 	}
 
 

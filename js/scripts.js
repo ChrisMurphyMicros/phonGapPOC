@@ -5,14 +5,44 @@ window.onload  = function() {
 
 
 // document.addEventListener("deviceready", onDeviceReady, false);
-
+// function onDeviceReady() {
 	function vibrate(duration) {
 		if (navigator.notification) { navigator.notification.vibrate(duration) }
 	}
 
+	document.getElementById("toggle-colour").onclick = function() {
+		vibrate(500);
+		document.getElementById("h1").classList.toggle("turnMeRed");
+	}
 
-var map;
-var infowindow;
+	function removeClassByClassName(elements, classToRemove) {
+		for (var i = elements.length-1;i >=0;i--){
+			elements[i].classList.remove(classToRemove);
+		}
+	}
+
+	document.getElementById("homeButton").onclick = function(e) {
+		e.preventDefault();
+		
+		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
+		document.getElementById("home").classList.add("active");
+		this.classList.toggle("active");
+	}
+
+	document.getElementById("mapButton").onclick = function(e) {
+		e.preventDefault();
+		
+		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
+		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
+		document.getElementById("map").classList.add("active");
+		this.classList.toggle("active");
+	}
+
+
+	var map;
+	var infowindow;
+
 	function loadGoogleMaps(geoLat, geoLong, accuracy) {
 		var currentLocation = new google.maps.LatLng(geoLat, geoLong);
 
@@ -65,14 +95,36 @@ var infowindow;
 		zoom: 16
 	});
 
+	var userLocationMarker = {
+	      // coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+	      // type: 'poly',
+	      url: 'http://nicenicejpg.com/20/32',
+		    // This marker is 20 pixels wide by 32 pixels tall.
+		    size: new google.maps.Size(20, 32),
+		    // The origin for this image is 0,0.
+		    origin: new google.maps.Point(0,0),
+		    // The anchor for this image is the base of the flagpole at 0,32.
+		    anchor: new google.maps.Point(0, 32)
+	};
+
 	var userLocation = new google.maps.Marker({
 		position: currentLocation,
-		map: map
+		map: map,
+		icon: userLocationMarker
 	});
+
+	// var circle = new google.maps.Circle({
+	// 	map: map,
+	// 	radius: 1000,
+	// 	fillColor: "lightblue",
+	// 	strokeWeight: 1,
+	// 	strokeColor: "blue"
+	// 	// position: currentLocation
+	// });
 
 	var request = {
 		location: currentLocation,
-		radius: 1000,
+		radius: 100,
 		query: "pub"
 	};
 	infowindow = new google.maps.InfoWindow();
@@ -126,40 +178,6 @@ var infowindow;
 
 	}
 
-// function onDeviceReady() {
-
-	document.getElementById("toggle-colour").onclick = function() {
-		vibrate(500);
-		document.getElementById("h1").classList.toggle("turnMeRed");
-	}
-
-	function removeClassByClassName(elements, classToRemove) {
-		for (var i = elements.length-1;i >=0;i--){
-			elements[i].classList.remove(classToRemove);
-		}
-	}
-
-	document.getElementById("homeButton").onclick = function(e) {
-		e.preventDefault();
-		
-		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
-		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
-		document.getElementById("home").classList.add("active");
-		this.classList.toggle("active");
-	}
-
-	document.getElementById("mapButton").onclick = function(e) {
-		e.preventDefault();
-		
-		removeClassByClassName(document.getElementsByClassName("tabs"), "active");
-		removeClassByClassName(document.getElementsByClassName("nav-link"), "active");
-		document.getElementById("map").classList.add("active");
-		this.classList.toggle("active");
-	}
-
-// var lat = 0;
-// var long = 0;
-
 	var geoSuccess = function(position) {
 	    // alert('Latitude: '          + position.coords.latitude          + '\n' +
 	    //       'Longitude: '         + position.coords.longitude         + '\n' +
@@ -173,11 +191,9 @@ var infowindow;
 	    var geoLong = position.coords.longitude;
 	    var accuracy = position.coords.accuracy;
 
-	    // var geoLat = 0;
-	    // var geoLong = 0;
+		console.log("whoopee!");
 
-	    loadGoogleMaps(geoLat, geoLong, accuracy)
-	    // loadGoogleMaps(geoLat, geoLong);
+	    loadGoogleMaps(geoLat, geoLong, accuracy);
 	};
 
 	// onError Callback receives a PositionError object
@@ -188,8 +204,15 @@ var infowindow;
 	          'message: ' + error.message + '\n');
 	};
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+		navigator.geolocation.getCurrentPosition(loadGoogleMaps(50.0000, 50.0000, 300), geoError, {timeout:15000} );
+		// navigator.geolocation.watchPosition(loadGoogleMaps(50.0000, 50.0000, 300), geoError, {timeout:10000});
 	}
+
+
+// var geoLat = 0;
+// var geoLong = 0;
+// var accuracy = 0;
+// loadGoogleMaps(geoLat, geoLong, accuracy)
 
 
 // }

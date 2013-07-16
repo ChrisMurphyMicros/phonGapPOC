@@ -59,15 +59,15 @@ var infowindow;
 
 // function initialize() {
   // var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
-
-	var marker = new google.maps.Marker({
-		position: new google.maps.LatLng(geoLat, geoLong),
-		map: map
-	});
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: currentLocation,
 		zoom: 16
+	});
+
+	var userLocation = new google.maps.Marker({
+		position: currentLocation,
+		map: map
 	});
 
 	var request = {

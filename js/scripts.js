@@ -11,26 +11,113 @@ window.onload  = function() {
 	}
 
 
+var map;
+var infowindow;
 	function loadGoogleMaps(geoLat, geoLong, accuracy) {
-	    var mapOptions = {
-	        center: new google.maps.LatLng(geoLat, geoLong),
-	        zoom: 16,
-	        mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
-	    var map = new google.maps.Map(document.getElementById("map-canvas"),
-	        mapOptions);
-	    var marker1 = new google.maps.Marker({
-	        position: new google.maps.LatLng(geoLat, geoLong),
-	        map: map
-	    });
-	    // if (accuracy >)
-	    alert(accuracy);
-	    var circle = new google.maps.Circle({
-		  map: map,
-		  radius: accuracy,
-		  fillColor: "lightblue"
-		});
-		circle.bindTo('center', marker1, 'position');
+		var currentLocation = new google.maps.LatLng(geoLat, geoLong);
+
+	 //    var mapOptions = {
+	 //        center: currentLocation,
+	 //        zoom: 16,
+	 //        mapTypeId: google.maps.MapTypeId.ROADMAP
+	 //    };
+	 //    var map = new google.maps.Map(document.getElementById("map-canvas"),
+	 //        mapOptions);
+	 //    var marker1 = new google.maps.Marker({
+	 //        position: new google.maps.LatLng(geoLat, geoLong),
+	 //        map: map
+	 //    });
+	 //    if (accuracy < 1000) {
+		//     var circle = new google.maps.Circle({
+		// 	  map: map,
+		// 	  radius: accuracy,
+		// 	  fillColor: "lightblue",
+		// 	  strokeWeight: 1,
+		// 	  strokeColor: "blue"
+		// 	});
+		// 	circle.bindTo('center', marker1, 'position');
+	 //    }
+
+		// var request = {
+		// 	location: currentLocation,
+		// 	radius: '500',
+		// 	types: ['store']
+		// };
+
+		// var service = new google.maps.places.PlacesService(map);
+		// service.nearbySearch(request, callback);
+
+		// function callback(results, status) {
+		//   if (status == google.maps.places.PlacesServiceStatus.OK) {
+		//     for (var i = 0; i < results.length; i++) {
+		//       var place = results[i];
+		//       createMarker(results[i]);
+		//     }
+		//   }
+		// }
+
+
+// function initialize() {
+  // var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
+
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: currentLocation,
+    zoom: 15
+  });
+
+  var request = {
+    location: currentLocation,
+    radius: 1000,
+    types: ['bar']
+  };
+  infowindow = new google.maps.InfoWindow();
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+}
+
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+// }
+
+
+// Pin multiple locations
+	    // var coords = [
+	    //     [54.97784, -1.612916],
+	    //     [55.378051, -3.435973]
+	    //     // and additional coordinates, just add a new item
+	    // ];
+	    // for (var i = 0; i < coords.length; i++) {
+	    //     // create a closure for your latitude/longitude pair
+	    //     (function(coord) {
+	    //         // set the location...
+	    //         var latLng = new google.maps.LatLng(coord[0], coord[1]);
+	    //         // ...and add the Marker to your map
+	    //         var marker = new google.maps.Marker({
+	    //             position: latLng,
+	    //             map: map
+	    //         });
+	    //     })(coords[i]);
+	    // };
+
+
 	}
 
 // function onDeviceReady() {
@@ -79,7 +166,6 @@ window.onload  = function() {
 	    var geoLat = position.coords.latitude;
 	    var geoLong = position.coords.longitude;
 	    var accuracy = position.coords.accuracy;
-	    console.log(accuracy);
 
 	    // var geoLat = 0;
 	    // var geoLong = 0;

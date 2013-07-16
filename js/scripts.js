@@ -11,7 +11,7 @@ window.onload  = function() {
 	}
 
 
-	function loadGoogleMaps(geoLat, geoLong) {
+	function loadGoogleMaps(geoLat, geoLong, accuracy) {
 	    var mapOptions = {
 	        center: new google.maps.LatLng(geoLat, geoLong),
 	        zoom: 16,
@@ -23,6 +23,12 @@ window.onload  = function() {
 	        position: new google.maps.LatLng(geoLat, geoLong),
 	        map: map
 	    });
+	    var circle = new google.maps.Circle({
+		  map: map,
+		  radius: accuracy,    // 10 miles in metres
+		  fillColor: '#AA0000'
+		});
+		circle.bindTo('center', marker1, 'position');
 	}
 
 // function onDeviceReady() {
@@ -71,6 +77,7 @@ window.onload  = function() {
 	    var geoLat = position.coords.latitude;
 	    var geoLong = position.coords.longitude;
 	    var accuracy = position.coords.accuracy;
+	    console.log(accuracy);
 
 	    // var geoLat = 0;
 	    // var geoLong = 0;

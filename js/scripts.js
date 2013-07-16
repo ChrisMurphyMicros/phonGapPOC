@@ -69,11 +69,11 @@ var infowindow;
   var request = {
     location: currentLocation,
     radius: 1000,
-    types: ['bar']
+    query: "pub"
   };
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
+  service.textSearch(request, callback);
 }
 
 function callback(results, status) {
